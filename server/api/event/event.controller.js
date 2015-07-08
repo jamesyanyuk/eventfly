@@ -3,9 +3,17 @@
 var _ = require('lodash');
 var Event = require('./event.model');
 
-var http = require('http');
-
+var eventbriteAPILib = require('node-eventbrite');
 var EVENTBRITE_TOKEN = 'CJ5XPOJ25C5YP2YATIU2';
+
+try {
+  var eventbriteAPI = eventbriteAPILib({
+    token: EVENTBRITE_TOKEN,
+    version : 'v3'
+  });
+} catch (error) {
+  console.log(error.message); // the options are missing, this function throws an error.
+}
 
 // Get list of events
 exports.index = function(req, res) {
@@ -14,10 +22,29 @@ exports.index = function(req, res) {
   //  return res.json(200, events);
   //});
 
-  http.get('https://www.eventbriteapi.com/v3/events/search/?token=CJ5XPOJ25C5YP2YATIU2&limit=2', function(res) {
-    return res.json(200, res);
-  }).on('error', function(err) {
-    return handleError(res, err);
+  var radius = (function() {
+    if(req.query.radius < 1)
+      return '1mi';
+    else if(req.query.radius > 1000)
+      return '1000mi';
+    else
+      return req.query.radius + 'mi';
+  })();
+  var latitude = req.query.latitude;
+  var longitude = req.query.longitude;
+
+  if(!latitude || !longitude || !radius)
+    return handleError(res, "Invalid latitude/longitude.");
+
+  eventbriteAPI.search({
+    'location.within': radius,
+    'location.latitude': latitude,
+    'location.longitude': longitude
+  }, function(error, data) {
+    if(error)
+      handleError(res, error);
+    else
+      return res.json(200, data);
   });
 };
 

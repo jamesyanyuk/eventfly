@@ -15,6 +15,16 @@
             <a ng-href="{{item.link}}">{{item.title}}</a>
         </li>
       </ul>
+
+      <input type="text" ng-model="string" placeholder="Enter a location" class="form-control location-search">
+      <form class="form-inline location-search-radius">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon">Search Radius</div>
+            <input type="number" ng-model="Data.eventRadius" class="form-control" placeholder="20">
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </div>

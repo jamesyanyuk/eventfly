@@ -28,3 +28,51 @@
     margin-top: 70px;
     border-top: 1px solid #E5E5E5;
 }
+
+.body-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 100%;
+  bottom: 0;
+  margin: 0;
+}
+
+.navbar {
+  margin-bottom: 0;
+}
+
+.map-container {
+  height: 100%;
+  padding-top: 51px;
+  padding-left: 0;
+  padding-right: 0;
+  position: absolute;
+}
+
+.angular-google-map {
+  height: 100%;
+}
+
+.angular-google-map-container {
+  height: 100%;
+}
+
+.result-list-container {
+  height: 100%;
+  float: right;
+  background-color: rgba(230, 230, 230, 0.85);
+  padding-top: 51px;
+  overflow-y: auto;
+  border-left: dotted #f8f8f8 4px;
+}
+
+.result-list-item {}
+
+.result-list-item:hover {
+  box-shadow: 2px 2px 5px #a4a4a4;
+}
+
+.result-list-item-p {
+  color: rgba(0,0,0,0.54);
+}

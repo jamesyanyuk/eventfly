@@ -5,7 +5,8 @@ angular.module('eventflyApp', [
   'ngResource',
   'ngSanitize',
   'ui.router',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'uiGmapgoogle-maps'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
@@ -18,4 +19,6 @@ angular.module('eventflyApp', [
       .otherwise('/');
 
     $locationProvider.html5Mode(true);
+  }).factory('Data', function () {
+    return { eventRadius: '' };
   });

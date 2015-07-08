@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('eventflyApp')
-  .controller('NavbarCtrl', function ($scope, $location) {
+  .controller('NavbarCtrl', function ($scope, $location, Data) {
+    $scope.Data = Data;
+
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
